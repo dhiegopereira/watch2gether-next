@@ -1,6 +1,6 @@
 import { Server } from 'socket.io'
 
-export default handler = (req, res) => {
+export default async function handler(req, res) {
   
   if (res.socket.server.io) {
     console.log('Socket is already running')
@@ -11,7 +11,10 @@ export default handler = (req, res) => {
     
     io.on('connection', socket => {
       socket.on('msg', msg => {
-        socket.broadcast.emit('msg', true);
+        socket.broadcast.emit('msg', msg);
+      })
+      socket.on('url', url => {
+        socket.broadcast.emit('url', url);
       })
     })
   }
