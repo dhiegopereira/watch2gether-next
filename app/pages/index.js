@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
-import { createRoom } from '../utils/w2gtv';
 let socket;
 
 export default function Home() {
@@ -9,7 +8,7 @@ export default function Home() {
         messages: ''
     })
     const [data, setData] = useState([]);
-    const [url, setUrl] = useState();
+    const [url, setUrl] = useState('');
 
     useEffect(() => {
         getPosts();
